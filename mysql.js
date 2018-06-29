@@ -212,6 +212,15 @@ var query = {
 					})
 				})
 			})
+		},
+		delete:function(request,success){
+			checkSessionKey(request,success,user=>{
+				getGetParams(request,params=>{
+					deleteMQL(params,"slider_bg",res=>{
+						success(res)
+					})
+				})
+			})
 		}
 	},
 	user: {
