@@ -203,6 +203,15 @@ var query = {
 					})
 				})
 			})
+		},
+		add:function(request,success){
+			checkSessionKey(request,success,user=>{
+				getPostParams(request,params=>{
+					insertMQL(params,"slider_bg",res=>{
+						success(res);
+					})
+				})
+			})
 		}
 	},
 	user: {
