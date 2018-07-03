@@ -194,29 +194,29 @@ var query = {
 			})
 		}
 	},
-	sliderBg:{
-		getList:function(request,success){
-			checkSessionKey(request,success,user=>{
-				getGetParams(request,params=>{
-					selectListMQL(params,"*","slider_bg","",res=>{
+	sliderBg: {
+		getList: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getGetParams(request, params => {
+					selectListMQL(params, "*", "slider_bg", "", res => {
 						success(res);
 					})
 				})
 			})
 		},
-		add:function(request,success){
-			checkSessionKey(request,success,user=>{
-				getPostParams(request,params=>{
-					insertMQL(params,"slider_bg",res=>{
+		add: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getPostParams(request, params => {
+					insertMQL(params, "slider_bg", res => {
 						success(res);
 					})
 				})
 			})
 		},
-		delete:function(request,success){
-			checkSessionKey(request,success,user=>{
-				getGetParams(request,params=>{
-					deleteMQL(params,"slider_bg",res=>{
+		delete: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getGetParams(request, params => {
+					deleteMQL(params, "slider_bg", res => {
 						success(res)
 					})
 				})
@@ -267,6 +267,35 @@ var query = {
 			getGetParams(request, params => {
 				selectMQL(params, "*", "user", "", res => {
 					success(res);
+				})
+			})
+		}
+	},
+	photo: {
+		getList: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getGetParams(request, params => {
+					selectListMQL(params, "*", "photo", "order by id desc", res => {
+						success(res);
+					})
+				})
+			})
+		},
+		add: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getPostParams(request, params => {
+					insertMQL(params, "photo", res => {
+						success(res);
+					})
+				})
+			})
+		},
+		delete:function(request,success){
+			checkSessionKey(request,success,user=>{
+				getGetParams(request,params=>{
+					deleteMQL(params,"photo",res=>{
+						success(res);
+					})
 				})
 			})
 		}
