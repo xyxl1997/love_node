@@ -264,8 +264,23 @@ var query = {
 			})
 		},
 		get: function (request, success) {
-			getGetParams(request, params => {
-				selectMQL(params, "*", "user", "", res => {
+			checkSessionKey(request, success, user => {
+				params.id = user.id;
+				getGetParams(request, params => {
+					selectMQL(params, "*", "user", "", res => {
+						success(res);
+					})
+				})
+			})
+		},
+		update: function (request, success) {
+			getPostParams(request, params => {
+				let sql = "update user set nickname = '" + params.nickname + "',head_image = '" + params.head_image + "' where id = " + params.id;
+				connection.query(sql, (error, res) => {
+					if (error) {
+						console.log(error);
+						return;
+					}
 					success(res);
 				})
 			})
@@ -275,7 +290,7 @@ var query = {
 		getList: function (request, success) {
 			checkSessionKey(request, success, user => {
 				getGetParams(request, params => {
-					selectListMQL(params, "*", "photo", "order by id desc", res => {
+					selectListMQL(params, "*", "photo", "order by creat_time desc", res => {
 						success(res);
 					})
 				})
@@ -290,10 +305,10 @@ var query = {
 				})
 			})
 		},
-		delete:function(request,success){
-			checkSessionKey(request,success,user=>{
-				getGetParams(request,params=>{
-					deleteMQL(params,"photo",res=>{
+		delete: function (request, success) {
+			checkSessionKey(request, success, user => {
+				getGetParams(request, params => {
+					deleteMQL(params, "photo", res => {
 						success(res);
 					})
 				})
