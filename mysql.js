@@ -265,8 +265,8 @@ var query = {
 		},
 		get: function (request, success) {
 			checkSessionKey(request, success, user => {
-				params.id = user.id;
 				getGetParams(request, params => {
+					params.id = user.id;
 					selectMQL(params, "*", "user", "", res => {
 						success(res);
 					})
